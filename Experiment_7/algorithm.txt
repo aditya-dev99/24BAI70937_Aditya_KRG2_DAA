@@ -1,0 +1,58 @@
+ALGORITHM
+
+Problem: Find the cheapest flight from src to dst with at most k stops.
+
+Steps:
+Initialize distance array
+Create a vector dist of size n
+Initialize all values to INT_MAX
+
+Set:
+
+dist[src] = 0;
+Relax edges for (k + 1) iterations
+Loop from i = 0 to k
+
+For each iteration:
+
+a. Create a temporary copy:
+
+vector<int> temp = dist;
+
+b. Traverse all flights (u, v, cost):
+
+If dist[u] == INT_MAX, skip
+
+Else if shorter path found:
+
+if (dist[u] + cost < temp[v]) {
+    temp[v] = dist[u] + cost;
+}
+
+c. Update original array:
+
+dist = temp;
+Final Answer:
+
+If:
+
+dist[dst] == INT_MAX
+
+return -1
+
+Else:
+
+return dist[dst];
+
+Key Points (Important for Viva/Exam)
+Total iterations = k + 1 → ensures max k stops
+Temporary array (temp) prevents:
+Using updated values in same iteration
+Incorrect shorter paths
+This is a modified Bellman-Ford approach
+
+Time Complexity:
+
+O((k + 1) * E)
+
+where E = number of flights

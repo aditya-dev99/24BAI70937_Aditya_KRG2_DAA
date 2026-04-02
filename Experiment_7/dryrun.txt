@@ -1,0 +1,51 @@
+Input:
+n = 5
+flights = [
+[0,1,200],
+[1,2,300],
+[0,3,400],
+[3,2,100],
+[2,4,150]
+]
+src = 0, dst = 4, k = 2
+🔹 Initial State:
+dist = [0, ∞, ∞, ∞, ∞]
+ Iteration 1 (i = 0 → max 1 edge allowed)
+
+temp = [0, ∞, ∞, ∞, ∞]
+
+Process all flights using previous dist:
+
+0 → 1 (200) → temp[1] = 200
+0 → 3 (400) → temp[3] = 400
+
+ Other edges skip (source unreachable)
+
+After update:
+
+dist = [0, 200, ∞, 400, ∞]
+Iteration 2 (i = 1 → max 2 edges allowed)
+
+temp = [0, 200, ∞, 400, ∞]
+
+1 → 2 (200 + 300 = 500) → temp[2] = 500
+3 → 2 (400 + 100 = 500) → temp[2] remains 500
+
+Important: Both use old dist values, not updated temp
+
+After update:
+
+dist = [0, 200, 500, 400, ∞]
+Iteration 3 (i = 2 → max 3 edges allowed)
+
+temp = [0, 200, 500, 400, ∞]
+
+2 → 4 (500 + 150 = 650) → temp[4] = 650
+
+After update:
+
+dist = [0, 200, 500, 400, 650]
+Final Answer:
+dist[4] = 650
+
+Return 650
